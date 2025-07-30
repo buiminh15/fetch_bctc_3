@@ -41,7 +41,12 @@ jobs:
       fail-fast: false
       matrix:
         script:
-          # - bctc-pac.js
+          - bctc-chs.js
+          - bctc-clh.js
+          - bctc-dp3.js
+          - bctc-sed.js
+          - bctc-skv.js
+          - bctc-stc.js
 
     steps:
       - name: "❗️ Skip 23:00 if in special periods"

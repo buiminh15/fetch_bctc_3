@@ -24,7 +24,7 @@ axiosRetry.default(axios, {
 
 async function fetchAndExtractData() {
   try {
-    const response = await axios.get('https://adc.net.vn/quan-he-co-dong/', {
+    const response = await axios.get('https://ximanglahien.com.vn/tin-cong-ty', {
       headers: {
         'accept': 'text/html',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
@@ -53,15 +53,15 @@ async function fetchAndExtractData() {
     }
     console.log('📢 [bctc-mbs.js:50]', names);
     // Lọc ra các báo cáo chưa có trong DB
-    const newNames = await filterNewNames(names, COMPANIES.ADC);
+    const newNames = await filterNewNames(names, COMPANIES.CLH);
     console.log('📢 [bctc-cdn.js:46]', newNames);
     if (newNames.length) {
-      await insertBCTC(newNames, COMPANIES.ADC);
+      await insertBCTC(newNames, COMPANIES.CLH);
 
       // Gửi thông báo Telegram cho từng báo cáo mới
       await Promise.all(
         newNames.map(name => {
-          return sendTelegramNotification(`Báo cáo tài chính của ADC ::: ${name}`);
+          return sendTelegramNotification(`Báo cáo tài chính của CLH ::: ${name}`);
         })
       );
       console.log(`Đã thêm ${newNames.length} báo cáo mới và gửi thông báo.`);

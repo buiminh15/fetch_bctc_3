@@ -24,7 +24,7 @@ axiosRetry.default(axios, {
 
 async function fetchAndExtractData() {
   try {
-    const response = await axios.get('http://catlaiport.com.vn/tin-tuc/pages/bao-cao-tai-chinh.aspx', {
+    const response = await axios.get('http://yensaokhanhhoasanest.com.vn/lienhecodong', {
       headers: {
         'accept': 'text/html',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
@@ -38,7 +38,7 @@ async function fetchAndExtractData() {
     const currentYear = new Date().getFullYear().toString();
     // Lấy tối đa 5 báo cáo mới nhất
     const names = [];
-    $('div.div-description').each((_, el) => {
+    $('.news-item a').each((_, el) => {
       const nameRaw = $(el).text().trim();
       const name = he.decode(nameRaw);
       const filterCondition = [currentYear, 'báo cáo tài chính'];
@@ -53,15 +53,15 @@ async function fetchAndExtractData() {
     }
     console.log('📢 [bctc-mbs.js:50]', names);
     // Lọc ra các báo cáo chưa có trong DB
-    const newNames = await filterNewNames(names, COMPANIES.CLL);
+    const newNames = await filterNewNames(names, COMPANIES.SKV);
     console.log('📢 [bctc-cdn.js:46]', newNames);
     if (newNames.length) {
-      await insertBCTC(newNames, COMPANIES.CLL);
+      await insertBCTC(newNames, COMPANIES.SKV);
 
       // Gửi thông báo Telegram cho từng báo cáo mới
       await Promise.all(
         newNames.map(name => {
-          return sendTelegramNotification(`Báo cáo tài chính của CLL ::: ${name}`);
+          return sendTelegramNotification(`Báo cáo tài chính của SKV ::: ${name}`);
         })
       );
       console.log(`Đã thêm ${newNames.length} báo cáo mới và gửi thông báo.`);

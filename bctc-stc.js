@@ -18,7 +18,7 @@ axiosRetry.default(axios, {
 async function fetchAndExtractData() {
   try {
     const response = await axios.get(
-      'https://ezir.fpts.com.vn/ThongTinDoanhNghiep/GetTinDoanhNghiepCongBo?stock_code=CHP&lang=vi-VN',
+      'https://ezir.fpts.com.vn/ThongTinDoanhNghiep/GetTinDoanhNghiepCongBo?stock_code=STC&lang=vi-VN',
       {
         headers: {
           'Accept': 'application/json',
@@ -48,15 +48,15 @@ async function fetchAndExtractData() {
     }
     console.log('📢 [bctc-SAF.js:50]', names);
     // Lọc ra các báo cáo chưa có trong DB
-    const newNames = await filterNewNames(names, COMPANIES.CHP);
+    const newNames = await filterNewNames(names, COMPANIES.STC);
     console.log('📢 [bctc-geg.js:44]', newNames);
     if (newNames.length) {
-      await insertBCTC(newNames, COMPANIES.CHP);
+      await insertBCTC(newNames, COMPANIES.STC);
 
       // Gửi thông báo Telegram cho từng báo cáo mới;
       await Promise.all(
         newNames.map(name =>
-          sendTelegramNotification(`Báo cáo tài chính của CHP::: ${name}`)
+          sendTelegramNotification(`Báo cáo tài chính của STC::: ${name}`)
         )
       );
       console.log(`Đã thêm ${newNames.length} báo cáo mới và gửi thông báo.`);
