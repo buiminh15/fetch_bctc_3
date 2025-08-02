@@ -47,6 +47,16 @@ jobs:
           - bctc-sed.js
           - bctc-skv.js
           - bctc-stc.js
+          - bctc-dpg.js
+          - bctc-dsn.js
+          - bctc-idv.js
+          - bctc-pnj.js
+          - bctc-ral.js
+          - bctc-tcm.js
+          - bctc-tra.js
+          - bctc-tv1.js
+          - bctc-vps.js
+          - rental-report.js
 
     steps:
       - name: "❗️ Skip 23:00 if in special periods"

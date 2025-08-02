@@ -48,7 +48,8 @@ const COMPANIES = {
   DPM: 'DPM',
   DBD: 'DBD',
   BWE: 'BWE',
-  BTT: 'BTT'
+  BTT: 'BTT',
+  RENTAL_REPORT: 'RENTAL_REPORT',
 };
 
 const CAFEF_API = `https://cafef.vn/du-lieu/Ajax/CongTy/BaoCaoTaiChinh.aspx?sym=`;
