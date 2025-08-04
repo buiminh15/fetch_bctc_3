@@ -56,6 +56,19 @@ jobs:
           - bctc-tra.js
           - bctc-tv1.js
           - bctc-vps.js
+          - bctc-ckd.js
+          - bctc-hug.js
+          - bctc-idp.js
+          - bctc-inn.js
+          - bctc-opc.js
+          - bctc-pgs.js
+          - bctc-pvt.js
+          - bctc-ree.js
+          - bctc-sfi.js
+          - bctc-snz.js
+          - bctc-vif.js
+          - bctc-vpd.js
+          - bctc-x20.js
           - rental-report.js
 
     steps:
