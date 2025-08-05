@@ -69,6 +69,19 @@ jobs:
           - bctc-vif.js
           - bctc-vpd.js
           - bctc-x20.js
+          - bctc-acv.js
+          - bctc-dvn.js
+          - bctc-eid.js
+          - bctc-ems.js
+          - bctc-gda.js
+          - bctc-htc.js
+          - bctc-idc.js
+          - bctc-lbm.js
+          - bctc-pps.js
+          - bctc-pti.js
+          - bctc-sab.js
+          - bctc-vgg.js
+          - bctc-vin.js
           - rental-report.js
 
     steps:
