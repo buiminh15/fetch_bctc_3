@@ -15,6 +15,8 @@ axiosRetry.default(axios, {
   }
 });
 
+axios.defaults.headers.common['Referer'] = 'https://eztrade.fpts.com.vn/';
+
 async function fetchAndExtractData() {
   try {
     const response = await axios.get(
