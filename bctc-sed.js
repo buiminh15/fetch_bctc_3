@@ -40,6 +40,8 @@ async function fetchAndExtractData() {
         timeout: 60000
       }
     );
+
+    console.log('📢 [bctc-sed.js:44]', response);
     const items = response.data.Data.Table1 || [];
     const names = items.filter(item => item.Title).map(item => item.Title && item.Title.trim());
     if (names.length === 0) {
