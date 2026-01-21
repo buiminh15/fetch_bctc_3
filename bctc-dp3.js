@@ -4,6 +4,8 @@ const { sendTelegramNotification } = require('./bot');
 const { COMPANIES, CAFEF_API } = require('./constants/companies');
 const { insertBCTC, filterNewNames } = require('./bctc');
 const he = require('he');
+const fs = require('fs');
+
 console.log('📢 [bctc-cdn.js:7]', 'running');
 
 const axiosRetry = require('axios-retry');
@@ -19,7 +21,7 @@ axiosRetry.default(axios, {
 
 async function fetchAndExtractData() {
   try {
-    const response = await axios.get(`${CAFEF_API}${COMPANIES.DP3}`, {
+    const response = await axios.get(`https://duocphamtw3.com/quan-he-co-dong/bao-cao-tai-chinh/`, {
       headers: {
         'accept': 'text/html',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
@@ -29,19 +31,18 @@ async function fetchAndExtractData() {
 
     const html = response.data;
     const $ = cheerio.load(html);
-    const currentYear = new Date().getFullYear().toString();
+
+    // const newHtml = $.html();   // HTML sau khi xử lý
+    // fs.writeFileSync('output.html', newHtml, 'utf8');
+    const currentYear = new Date().getFullYear();
     // Lấy tối đa 5 báo cáo mới nhất
     const names = [];
-    $('.treeview table td').each((index, element) => {
+    $('.news-video a').each((index, element) => {
       const nameRaw = $(element).text().trim();
       const name = he.decode(nameRaw);
-      if (index < 10) {
-        const filterCondition = [currentYear, 'báo cáo tài chính'];
-        if (filterCondition.every(y => name.trim().toLocaleLowerCase().includes(y))) {
-          names.push(`${name}`);
-        }
+      if (name.includes(currentYear) || name.includes(currentYear - 1)) {
+        names.push(name);
       }
-
     });
 
     if (names.length === 0) {
